@@ -56,7 +56,7 @@ let cart: [ProductInfo] = [
  */
 
 for index in 0..<cart.count {
-    let item = cart[index]
+    var item = cart[index]
     print("------------------- \(index + 1) -------------------------------")
     print("Назва товару: \(item.0), Ціна: \(item.1) \(item.2)")
     print("Сокет: \(item.3), Процессор: \(item.4)")
@@ -108,8 +108,16 @@ for (index, item) in cart.enumerated() {
     Ціна: 1717.00 ₴
     ------------------------------------------------------
  */
-
-
+//let item = cart[index]
+var cartCounter = 0
+while cartCounter < cart.count {
+    var item = cart[cartCounter]
+    cartCounter += 1
+    print("-------------------\(cartCounter) ----------------------------")
+    print("Назва товару: \(item.0) ")
+    print("Ціна:\(item.1) \(item.2) ")
+    print("------------------------------------------------------")
+}
 
 
 
@@ -130,8 +138,14 @@ for (index, item) in cart.enumerated() {
     ------------------------------------------------------
  */
 
-
-
+cartCounter = 0
+var item = cart[cartCounter]
+repeat {
+    cartCounter += 1
+    print(" -------------------\(cartCounter)-------------------------------")
+    print("Назва товару: \(item.0)")
+    print("Сокет: \(item.3)")
+} while cartCounter < cart.count
 
 
 /*
@@ -163,7 +177,15 @@ for (index, item) in cart.enumerated() {
     ------------------------------------------------------
  */
 
-
+for index in 0..<cart.count {
+    var item = cart[index]
+    
+    if item.1 < 5000 && item.3 == "s1151" {
+        print("-------------------\(index + 1)--------------------------")
+        print("Назва товару: \(item.0), \(item.1) \(item.2) ")
+        print("Сокет: \(item.3)")
+    }
+}
 
 
 
