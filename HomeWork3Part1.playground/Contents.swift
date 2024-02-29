@@ -234,6 +234,20 @@ for index in 0..<cart.count {
  */
 
 
+print("\n\n")
+
+for (index, item) in cart.enumerated () {
+    let processorValue = item.4
+    print( "-------------------\(index + 1) --------------------------")
+    switch processorValue {
+    case "Intel":
+        print("Назва товару: \(item.0), Ціна:\(item.1)\(item.2)")
+    case "AMD":
+        print("Назва товару: \(item.0), Ціна:\(item.1)\(item.2)")
+    default:
+        break
+    }
+}
 
 /*
  
@@ -265,14 +279,27 @@ for index in 0..<cart.count {
     2 Назва товару: Asus Prime H310M-E R2.0
     ...
     n Назва товару: Asus WS C246 Pro // n - номер останнього товару
-    ------------------------------------------------------
- 
+""    ""------------------------------------------------------""
+""
  !! не забудьте перевірити роботу функції викликавши її
  
  */
-
-
-
+print("\n\n")
+  
+print("------------- Inetel ---------------")
+for (counter , cartValue) in cart.enumerated(){
+    let processorValue = cartValue.4
+    func processerInfo() {
+        switch processorValue {
+        case "Intel":
+            print("\(counter + 1). Назва товару: \(cartValue.0)")
+        default:
+            break
+        }
+    }
+    processerInfo()
+}
+print("------------------------------------------------------")
 
 /*
  
@@ -303,9 +330,16 @@ for index in 0..<cart.count {
  
  */
 
-
-
-
+func showMaxPrice (maxPrice: Double) {
+    print("------------------- Товари з ціною менше \(maxPrice) ------------------------")
+    for (index, item) in cart.enumerated(){
+        if maxPrice > item.1 {
+            print("\(index + 1) Назва товару \(item.0) \(item.1)\(item.2)")
+        }
+    }
+}
+showMaxPrice(maxPrice: 5000.00)
+print("------------------------------------------------------")
 
 
 /*
@@ -330,8 +364,28 @@ for index in 0..<cart.count {
  
  */
 
+print("\n\n")
 
+func showLowPrice(processor: String) {
+    print("----------- Найдорожчий товар за процесором Intel -----------")
+    var priceList: [Double] = []
+    
+    for item in cart {
+        if item.4 == processor {
+            priceList.append(item.1)
+        }
+    }
+    var maxPrice = priceList.max()
+    
+    for item in cart {
+        if item.4 == processor && maxPrice == item.1 {
+            print("Назва товару: \(item.0) \(item.1) \(item.2)")
+        }
+    }
+}
 
+showLowPrice(processor: "Intel")
+print("--------------------------------------------------------------")
 
 
 /*
@@ -351,11 +405,15 @@ for index in 0..<cart.count {
  створити змінну типу створенного enum з якимось із значень
  
  */
+print("\n\n")
 
-
-
-
-
+enum ProcessorType: String {
+    
+    case intel = "Intel"
+    case amd = "AMD"
+}
+var processorChoice = ProcessorType.amd
+print(processorChoice)
 
 /*
  
@@ -371,8 +429,13 @@ for index in 0..<cart.count {
  */
 
 
-
-
+enum Currency: String {
+    case uah = "UAH"
+    case usd = "USD"
+    case eur = "EUR"
+}
+var currencyChoice: Currency = .eur
+print(currencyChoice)
 
 /*
  
@@ -393,8 +456,16 @@ for index in 0..<cart.count {
  
  */
 
+struct MotherBoard {
+    
+    var socet: String = "s1152"
+    var processor = ProcessorType.intel
+}
 
-
+var motherBoard = MotherBoard()
+motherBoard.socet = "s1151"
+motherBoard.processor = ProcessorType.amd
+print(motherBoard)
 
 
 
@@ -412,3 +483,23 @@ for index in 0..<cart.count {
  створити змінну типу Product і спробувати поміняти їй інші значення
  
  */
+
+print("\n\n")
+
+class Product {
+    
+    var name = ""
+    var price: Double = 0.0
+    var currency = Currency.eur
+    var motherBoard = MotherBoard()
+}
+
+let productsClass = Product()
+let productsClass1 = Product()
+
+productsClass.currency = .eur
+productsClass1.currency = .uah
+
+productsClass.name = "Biostar H310MHP"
+productsClass.price = 1499.99
+
